@@ -1,17 +1,30 @@
 <nz-layout class="app-layout">
-  <nz-sider class="menu-sidebar"
+  <nz-sider style="position:fixed;"
+            class="menu-sidebar"
             nzCollapsible
             nzWidth="256px"
             nzBreakpoint="md"
+            [nzCollapsedWidth]="0"
             [(nzCollapsed)]="isCollapsed"
-            [nzTrigger]="null">
-    <div class="sidebar-logo">
-      <a href="https://xtls.github.io/" target="_blank">
-        <img src="https://github.com/CerteKim/xray-webui/blob/master/src/assets/logo.png?raw=true" alt="logo">
-        <h1>Xray Webui</h1>
-      </a>
-    </div>
-    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+            [nzTrigger]="null"
+            [nzTheme]="theme ? 'dark' : 'light'">
+    <nz-header>
+      <ul nz-menu [nzTheme]="theme ? 'dark' : 'light'" nzMode="horizontal">
+        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+          <i class="trigger"
+             nz-icon
+             [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+          ></i>
+          <b> Panel</b>
+        </span>
+        <span style="position: absolute;
+                     right: 10px;">
+          <nz-switch style="position: relative; right: 12px;" [(ngModel)]="theme"></nz-switch>
+          <b>Dark Mode</b>
+        </span>
+      </ul>
+    </nz-header>
+    <ul nz-menu nzMode="inline" [nzTheme]="theme ? 'dark' : 'light'" [nzInlineCollapsed]="isCollapsed">
       <li nz-submenu nzOpen nzTitle="Dashboard" nzIcon="dashboard">
         <ul>
           <li nz-menu-item nzMatchRouter>
@@ -21,29 +34,42 @@
             <a>Monitor</a>
           </li>
           <li nz-menu-item nzMatchRouter>
-            <a>Workplace</a>
+            <a>About</a>
           </li>
         </ul>
       </li>
-      <li nz-submenu nzOpen nzTitle="Form" nzIcon="form">
+      <li nz-submenu nzOpen nzTitle="Manager" nzIcon="setting">
         <ul>
           <li nz-menu-item nzMatchRouter>
-            <a>Basic Form</a>
+            <a>Base</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/manager">Proxy Manager</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a>Routing Manager</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a>Dns Manager</a>
           </li>
         </ul>
+      </li>
+      <li nz-menu-item nz-tooltip nzTooltipPlacement="right" nzSelected>
+        <i nz-icon nzType="poweroff"></i>
+        <span>Switch</span>
       </li>
     </ul>
   </nz-sider>
   <nz-layout>
     <nz-header>
-      <div class="app-header">
+      <ul nz-menu [nzTheme]="theme ? 'dark' : 'light'" nzMode="horizontal" class="app-header">
         <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
             <i class="trigger"
                nz-icon
                [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
             ></i>
         </span>
-      </div>
+      </ul>
     </nz-header>
     <nz-content>
       <div class="inner-content">

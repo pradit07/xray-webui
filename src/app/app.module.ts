@@ -21,7 +21,6 @@ import { IconsProviderModule } from './icons-provider.module';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
-
 registerLocaleData(zh);
 
 const antDesignIcons = AllIcons as {

@@ -47,7 +47,7 @@
           </li>
         </ul>
       </li>
-      <li nz-menu-item nzMatchRouter >
+      <li nz-menu-item nzMatchRouter>
         <i nz-icon [nzType]="switch ? 'poweroff' : 'play-circle'"></i>
         <span>Switch<nz-switch style="position: absolute; right: 12px;" [(ngModel)]="switch"></nz-switch></span>
       </li>
@@ -63,7 +63,12 @@
         <span></span>
         <span style="position: absolute;
                      right: 10px;">
-          <nz-switch style="position: relative; right: 12px;" [(ngModel)]="theme"></nz-switch>
+          <nz-switch style="position: relative; right: 12px;" [(ngModel)]="theme"
+                     onClick='if (window.localStorage.getItem("theme") === "light") {
+                                window.localStorage.setItem("theme", "dark")
+                              } else {
+                                window.localStorage.setItem("theme", "light")
+                              }'></nz-switch>
           <b>Dark Mode</b>
         </span>
       </ul>

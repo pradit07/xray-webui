@@ -47,9 +47,14 @@
           </li>
         </ul>
       </li>
-      <li nz-menu-item nzMatchRouter>
-        <i nz-icon [nzType]="switch ? 'poweroff' : 'play-circle'"></i>
-        <span>Switch<nz-switch style="position: absolute; right: 12px;" [(ngModel)]="switch"></nz-switch></span>
+      <li style="display: flex;" nz-menu-item nzMatchRouter>
+        <div style="flex: 3;" (click)="switch = !switch">
+          <i nz-icon [nzType]="switch ? 'poweroff' : 'play-circle'"></i>
+          <span>Switch</span>
+        </div>
+        <div style="flex: 1;">
+          <nz-switch [style]="isCollapsed ? 'display:none;position: absolute; right: 12px;' : 'display:unset;position: absolute; right: 12px;' " [(ngModel)]="switch"></nz-switch>
+        </div>
       </li>
     </ul>
   </nz-sider>
@@ -60,7 +65,6 @@
         <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
           Panel
         </span>
-        <span></span>
         <span style="position: absolute;
                      right: 10px;">
           <nz-switch style="position: relative; right: 12px;" [(ngModel)]="theme"

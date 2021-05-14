@@ -3,8 +3,6 @@
             class="menu-sidebar"
             nzCollapsible
             nzWidth="256px"
-            nzBreakpoint="md"
-            [nzCollapsedWidth]="0"
             [(nzCollapsed)]="isCollapsed"
             [nzTrigger]="null"
             [nzTheme]="theme ? 'dark' : 'light'">
@@ -14,13 +12,8 @@
           <i class="trigger"
              nz-icon
              [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+             style="padding: 6px;"
           ></i>
-          <b> Panel</b>
-        </span>
-        <span style="position: absolute;
-                     right: 10px;">
-          <nz-switch style="position: relative; right: 12px;" [(ngModel)]="theme"></nz-switch>
-          <b>Dark Mode</b>
         </span>
       </ul>
     </nz-header>
@@ -28,46 +21,50 @@
       <li nz-submenu nzOpen nzTitle="Dashboard" nzIcon="dashboard">
         <ul>
           <li nz-menu-item nzMatchRouter>
-            <a routerLink="/welcome">Welcome</a>
+            <a routerLink="/dashboard/welcome">Welcome</a>
           </li>
           <li nz-menu-item nzMatchRouter>
-            <a>Monitor</a>
+            <a routerLink="/dashboard/monitor">Monitor</a>
           </li>
           <li nz-menu-item nzMatchRouter>
-            <a>About</a>
+            <a routerLink="/dashboard/about">About</a>
           </li>
         </ul>
       </li>
       <li nz-submenu nzOpen nzTitle="Manager" nzIcon="setting">
         <ul>
           <li nz-menu-item nzMatchRouter>
-            <a>Base</a>
+            <a routerLink="/manager/base">Base</a>
           </li>
           <li nz-menu-item nzMatchRouter>
-            <a routerLink="/manager">Proxy Manager</a>
+            <a routerLink="/manager/proxy">Proxy Manager</a>
           </li>
           <li nz-menu-item nzMatchRouter>
-            <a>Routing Manager</a>
+            <a routerLink="/manager/route">Routing Manager</a>
           </li>
           <li nz-menu-item nzMatchRouter>
-            <a>Dns Manager</a>
+            <a routerLink="/manager/dns">Dns Manager</a>
           </li>
         </ul>
       </li>
-      <li nz-menu-item nz-tooltip nzTooltipPlacement="right" nzSelected>
-        <i nz-icon nzType="poweroff"></i>
-        <span>Switch</span>
+      <li nz-menu-item nzMatchRouter >
+        <i nz-icon [nzType]="switch ? 'poweroff' : 'play-circle'"></i>
+        <span>Switch<nz-switch style="position: absolute; right: 12px;" [(ngModel)]="switch"></nz-switch></span>
       </li>
     </ul>
   </nz-sider>
+  <nz-sider nzWidth="256px" nzCollapsed="true" [nzTrigger]="null"></nz-sider>
   <nz-layout>
     <nz-header>
       <ul nz-menu [nzTheme]="theme ? 'dark' : 'light'" nzMode="horizontal" class="app-header">
         <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
-            <i class="trigger"
-               nz-icon
-               [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
-            ></i>
+          Panel
+        </span>
+        <span></span>
+        <span style="position: absolute;
+                     right: 10px;">
+          <nz-switch style="position: relative; right: 12px;" [(ngModel)]="theme"></nz-switch>
+          <b>Dark Mode</b>
         </span>
       </ul>
     </nz-header>
